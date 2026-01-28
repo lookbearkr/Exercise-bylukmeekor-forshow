@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exercise</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <div class="logo">NKL</div>
+        <div>
+          <h1>Exercise</h1>
+          <p>สุ่มท่า + จับเวลา</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>ตั้งค่าโปรแกรม</h2>
+
+      <div class="grid">
+        <div class="field">
+          <label for="totalMin">เวลาที่มี</label>
+          <select id="totalMin">
+            <option value="5">5 นาที</option>
+            <option value="10">10 นาที</option>
+            <option value="15">15 นาที</option>
+            <option value="20">20 นาที</option>
+            <option value="25">25 นาที</option>
+            <option value="30" selected>30 นาที</option>
+            <option value="40">40 นาที</option>
+            <option value="45">45 นาที</option>
+            <option value="60">60 นาที</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="workSec">เวลาต่อท่า</label>
+          <select id="workSec">
+            <option value="20">20 วินาที/ท่า</option>
+            <option value="30" selected>30 วินาที/ท่า</option>
+            <option value="40">40 วินาที/ท่า</option>
+            <option value="45">45 วินาที/ท่า</option>
+            <option value="60">60 วินาที/ท่า</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="restSec">พักระหว่างท่า</label>
+          <select id="restSec">
+            <option value="0">ไม่พัก</option>
+            <option value="5">5 วินาที</option>
+            <option value="10" selected>10 วินาที</option>
+            <option value="15">15 วินาที</option>
+            <option value="20">20 วินาที</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="goal">เป้าหมาย</label>
+          <select id="goal">
+            <option value="fit" selected>ฟิต / เผาผลาญ</option>
+            <option value="strength">เสริมกล้าม</option>
+            <option value="fresh">เบา ๆ / ผ่อนคลาย</option>
+          </select>
+        </div>
+
+        <label class="check">
+          <input id="noJump" type="checkbox" />
+          Low impact (ไม่เอาท่ากระโดด)
+        </label>
+
+        <label class="check">
+          <input id="mixAll" type="checkbox" checked />
+          สุ่มผสมท่าหลายแบบ (แนะนำ)
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="randomBtn" class="primary">สร้างโปรแกรม (สุ่ม)</button>
+        <button id="clearBtn" class="ghost">ล้าง</button>
+      </div>
+
+      <p id="statusText" class="note">พร้อมแล้ว กด “สร้างโปรแกรม (สุ่ม)”</p>
+      <p id="debugText" class="note" style="color:#b42318;"></p>
+    </section>
+
+    <section class="card">
+      <h2>โปรแกรมที่สุ่มได้</h2>
+      <div id="planBox" class="plan">ยังไม่มีโปรแกรม</div>
+    </section>
+
+    <section class="card">
+      <h2>จับเวลา</h2>
+
+      <div class="player">
+        <div class="player-head">
+          <div>
+            <div id="phaseText" class="phase">ยังไม่เริ่ม</div>
+            <div id="exerciseName" class="exname">—</div>
+            <div id="tipText" class="tip">ทิปจะขึ้นตรงนี้</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-title">ลำดับ</div>
+            <div id="stepText" class="stat-value">0/0</div>
+          </div>
+        </div>
+
+        <div class="imgWrap">
+          <img id="exerciseImg" alt="รูปท่าออกกำลังกาย" />
+        </div>
+
+        <div class="timerRow">
+          <div id="timeText" class="timer">00:00</div>
+        </div>
+
+        <div class="progress">
+          <div id="bar"></div>
+        </div>
+
+        <div class="controls">
+          <button id="startBtn" class="primary" disabled>เริ่ม</button>
+          <button id="pauseBtn" class="ghost" disabled>พัก</button>
+          <button id="nextBtn" class="ghost" disabled>ข้าม</button>
+          <button id="resetBtn" class="danger" disabled>รีเซ็ต</button>
+        </div>
+
+        <p class="tiny center">หมดเวลาแล้วจะเปลี่ยนท่า + เปลี่ยนรูปอัตโนมัติ</p>
+      </div>
+    </section>
+  </main>
+<section class="card">
+<h2>การเผาผลาญพลังงานโดยประมาณ</h2>
+
+<p class="note">
+ค่าเหล่านี้ไม่ใช่ตัวเลขตายตัวสำหรับทุกคน เพราะอัตราการเผาผลาญขึ้นอยู่กับ น้ำหนักตัว, ความเข้มข้น (Intensity) และมวลกล้ามเนื้อ ของแต่ละบุคคลด้วย
+</p>
+<ul class="cal-list">
+<li><b>Arm Circle</b> : ประมาณ 2–4 แคล / นาที</li>
+<li><b>Breathing (ฝึกหายใจ)</b> : ประมาณ 1–2 แคล / นาที</li>
+<li><b>Glute Bridge</b> : ประมาณ 3–5 แคล / นาที</li>
+<li><b>High Knees</b> : ประมาณ 7–12 แคล / นาที</li>
+<li><b>Lunge</b> : ประมาณ 4–7 แคล / นาที</li>
+<li><b>March (เดินยกเข่าอยู่กับที่)</b> : ประมาณ 3–5 แคล / นาที</li>
+<li><b>Mountain Climber</b> : ประมาณ 8–12 แคล / นาที</li>
+<li><b>Plank</b> : ประมาณ 3–5 แคล / นาที</li>
+<li><b>Push-up</b> : ประมาณ 6–10 แคล / นาที</li>
+<li><b>Squat</b> : ประมาณ 5–8 แคล / นาที</li>
+<li><b>Step Touch</b> : ประมาณ 3–5 แคล / นาที</li>
+<li><b>Stretch (ยืดเหยียด)</b> : ประมาณ 2–3 แคล / นาที</li>
+<li><b>Jumping Jack</b> : ประมาณ 8–12 แคล / นาที</li>
+</ul>
+</section>
+
+ <script src="script.js"></script>
+</body>
+</html>
